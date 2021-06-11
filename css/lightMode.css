@@ -1,0 +1,53 @@
+* {
+	color: #000000;
+}
+
+body, #input {
+	background-color: #e6e6e6;
+}
+
+#navbar, #scramDiv {
+	background-color: #e4e5f1;
+}
+
+#navbar {
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.05);
+}
+
+#scramDiv {
+	box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.05);
+}
+
+#timesListDiv, #aboutDiv {
+	background-color: #d2d3db;
+}
+
+#timesList, #about {
+	background-color: #9394a5;
+}
+
+#input, #scramSelect {
+	border: 1px solid #000000;
+	background-color: #e4e5f1;
+}
+
+#navbar ul li:hover  {
+	background-color: #d2d3db;
+}
+
+#closeDiv:hover {
+	background-color: #9394a5;
+}
+
+#pen_OK:hover, #pen_p2:hover, #pen_DNF:hover, #del:hover, #lastScram:hover, #nextScram:hover {
+	background-color: #d2d3db;
+}
+
+#inspectionDiv {
+  background-color: #e6e6e6;
+}
+
+#avgCountInput {
+	border: 1px solid #000000;
+	background-color: #9394a5;
+}
