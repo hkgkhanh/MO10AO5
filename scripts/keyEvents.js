@@ -118,5 +118,15 @@ document.onkeydown = function(e) {
 	} else if (e.ctrlKey && e.keyCode === 51) {
 		setDNF();
 		
+	} else if (e.altKey && e.keyCode === 73) {
+		var newCount = prompt("mean of X average(s) of 5: X =", avgCount);
+
+		if (newCount != null && parseInt(newCount) > 0) {
+
+			document.getElementById("avgCountInput").value = parseInt(newCount);
+			updateAvgCount();
+			saveSettings();
+		}
+		
 	}
 }
