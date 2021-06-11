@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="p100" lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="mo10ao5, timer, cube timer, rubiks cube, online timer, web timer">
+    <meta name="author" content="Nông Quốc Khánh">
+    <title>MO10AO5 Cube CALC</title>
+    <link rel="stylesheet" type="text/css" href="css/portrait.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/landscape.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/darkMode.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/lightMode.css"></link>
+  </head>
+	
+  <body onload="docOnLoad()" onresize="resizeWindow()">
+
+    <div id="navbar">
+      <ul>
+        <li onclick="showDiv('timesListDiv')"><a>Times list</a></li>
+        <li onclick="showDiv('aboutDiv')"><a>About</a></li>
+        <li onclick="toggleTheme()"><a>Dark/Light</a></li>
+      </ul>
+    </div>
+
+    <div id="inputDiv">
+      <table>
+        <tr>
+          <td colspan="2">solve: <span id="solveInAvg">1</span></td>
+          <td colspan="2">avg: <span id="avg">1</span></td>
+        </tr>
+        <tr>
+          <td colspan="4"><input type="text" id="input"></td>
+        </tr>
+        <tr>
+          <td colspan="1" id="pen_OK" onclick="setOK()">OK</td>
+          <td colspan="1" id="pen_p2" onclick="setP2()">+2</td>
+          <td colspan="1" id="pen_DNF" onclick="setDNF()">DNF</td>
+          <td colspan="1" id="del" onclick="delSolve()">Del</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="scramDiv">
+
+      <div id="scramOption">
+        <select id="scramSelect" onchange="generateScramble(this.value); saveSettings();">
+          <option value="333">3x3x3</option>
+          <option value="222">2x2x2</option>
+          <option value="444">4x4x4</option>
+          <option value="555">5x5x5</option>
+          <option value="666">6x6x6</option>
+          <option value="777">7x7x7</option>
+          <option value="mega">megaminx</option>
+          <option value="pyra">pyraminx</option>
+          <option value="sq1">square-1</option>
+          <option value="skb">skewb</option>
+          <option value="clk">clock</option>
+          <option value="333oh">3x3x3 oh</option>
+          <option value="333bld">3x3x3 bld</option>
+        </select>
+
+        <span id="lastScram" onclick="getLastScramble()">last</span>/<span id="nextScram" onclick="generateScramble(document.getElementById('scramSelect').value)">next</span> scramble
+      </div>
+
+      <div id="scramContainer"></div>
+
+    </div>
+
+    <div id="timesListDiv">
+      <div id="timesList">
+        You haven't done any solve.
+      </div>
+    </div>
+
+    <div id="aboutDiv">
+      <div id="about">
+
+        <p class="header">How to use</p>
+        <ul>
+          <li>Import time by typing is the only method. Time format when importing is <code>MMSSmm</code> or <code>SSmm</code> (like csTimer).</li>
+          <li>Press spacebar for WCA inspection (optional).</li>
+          <li>mean of <input id="avgCountInput" type="number" min="1" value="10" oninput="updateAvgCount(); saveSettings();"> average(s) of 5 (greater than 0).</li>
+          <li>Keyboard shortcuts: <br>
+            <ul style="list-style-type: circle; padding-top: 0;">
+              <li><code>Alt + 2~7</code>: Scramble for 2x2x2<code>~</code>7x7x7</li>
+              <li><code>Alt + M</code>: Scramble for megaminx</li>
+              <li><code>Alt + P</code>: Scramble for pyraminx</li>
+              <li><code>Alt + 1</code>: Scramble for square-1</li>
+              <li><code>Alt + S</code>: Scramble for skewb</li>
+              <li><code>Alt + C</code>: Scramble for clock</li>
+              <li><code>Alt + O</code>: Scramble for 3x3x3 oh</li>
+              <li><code>Alt + B</code>: Scramble for 3x3x3 bld</li>
+              <li><code>Alt + Z</code>: Delete last solve</li>
+              <li><code>Ctrl + 1/2/3</code>: Set penalty of last solve to OK/+2/DNF</li>
+              <li><code>Alt + Left/Right arrow</code>: Last/next scramble</li>
+              <li><code>Alt + L</code>: toggle dark/light mode</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p class="header">Credits</p>
+        <ul>
+          <li>Written by <a href="https://github.com/hkgkhanh" target="_blank">me</a></li>
+          <li>Scramble generator source code: <a href="https://github.com/euphwes/pyTwistyScrambler" target="_blank">pyTwistyScrambler</a></li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div id="closeDiv" onclick="closeDiv()">X</div>
+
+    <div id="inspectionDiv">
+      <span id="inspection">15</span>
+    </div>
+
+    <script>
+      var darkMode = false;
+      var timesListDiv = document.getElementById("timesListDiv");
+      var aboutDiv = document.getElementById("aboutDiv");
+
+
+
+
+
+      function docOnLoad() {
+        getDataStorage();
+        updateAvgCount();
+        generateScramble(document.getElementById("scramSelect").value);
+        resizeWindow();
+
+        if (!darkMode) {
+          document.styleSheets[2].disabled = true;
+          document.styleSheets[3].disabled = false;
+        } else {
+          document.styleSheets[2].disabled = false;
+          document.styleSheets[3].disabled = true;
+        }
+      }
+
+
+
+
+      function resizeWindow() {
+        let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+        if (width/height < 6/5) {
+          document.styleSheets[1].disabled = true;
+          document.styleSheets[0].disabled = false;
+        } else {
+          document.styleSheets[1].disabled = false;
+          document.styleSheets[0].disabled = true;
+        }
+      }
+
+      function toggleTheme() {
+        if (darkMode === false) {
+          darkMode = true;
+        } else {
+          darkMode = false;
+        }
+
+        if (!darkMode) {
+          document.styleSheets[2].disabled = true;
+          document.styleSheets[3].disabled = false;
+        } else {
+          document.styleSheets[2].disabled = false;
+          document.styleSheets[3].disabled = true;
+        }
+
+        saveSettings();
+      }
+
+
+
+
+
+
+      function showDiv(id) {
+        document.getElementById(id).style.display = "block";
+        document.getElementById("closeDiv").style.display = "block";
+      }
+
+      function closeDiv() {
+        timesListDiv.style.display = "none";
+        //settingsDiv.style.display = "none";
+        aboutDiv.style.display = "none";
+        document.getElementById("closeDiv").style.display = "none";
+      }
+    </script>
+    <script type="text/javascript" src="scripts/storage.js"></script>
+    <script type="text/javascript" src="scripts/keyEvents.js"></script>
+    <script type="text/javascript" src="scripts/inspection.js"></script>
+    <script type="text/javascript" src="scripts/calc.js"></script>
+    <script type="text/javascript" src="scripts/solveRelated.js"></script>
+
+    <script type="text/javascript" src="scripts/scram/mathlib.js"></script>
+    <script type="text/javascript" src="scripts/scram/scramble.js"></script>
+    <script type="text/javascript" src="scripts/scram/utilscramble.js"></script>
+    <script type="text/javascript" src="scripts/scram/megascramble.js"></script>
+    <script type="text/javascript" src="scripts/scram/scramGen.js"></script>
+    <script type="text/javascript" src="scripts/scram/scramble_333_edit.js"></script>
+    <script type="text/javascript" src="scripts/scram/2x2x2.js"></script>
+    <script type="text/javascript" src="scripts/scram/4x4x4.js"></script>
+    <script type="text/javascript" src="scripts/scram/pyraminx.js"></script>
+    <script type="text/javascript" src="scripts/scram/skewb.js"></script>
+    <script type="text/javascript" src="scripts/scram/scramble_sq1.js"></script>
+
+  </body>
+	
+</html>
