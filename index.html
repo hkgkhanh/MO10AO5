@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="keywords" content="mo10ao5, timer, cube timer, rubiks cube, online timer, web timer">
     <meta name="author" content="Nông Quốc Khánh">
+	  
+	  <script type="text/javascript" src="scripts/pwa/service-worker.js"></script>
 
     <title>MO10AO5 Cube CALC</title>
     <link rel="shortcut icon" type="image/png" href="images\android-chrome-192x192.png"></link>
@@ -195,6 +197,24 @@
         document.getElementById("closeDiv").style.display = "none";
       }
     </script>
+	  
+    <script>
+  	if ('serviceWorker' in navigator) {
+  		window.addEventListener('load', function() {
+  		navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+  		// Registration was successful
+  		console.log('Registered!');
+  		}, function(err) {
+  		// registration failed :(
+  		console.log('ServiceWorker registration failed: ', err);
+  		}).catch(function(err) {
+  		console.log(err);
+  		});
+  		});
+  	} else {
+  		console.log('service worker is not supported');
+  	}
+  </script>
 	  
     
     
