@@ -266,3 +266,8 @@ code {
 	font-size: 1.7rem;
 	font-weight: bold;
 }
+
+.circleStyleList {
+	list-style-type: circle;
+	padding-top: 0;
+}
