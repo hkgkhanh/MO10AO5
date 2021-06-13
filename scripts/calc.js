@@ -98,15 +98,15 @@ function calc() {
 		//////////
 
 		// CALC SESSION MEAN
-		sessionMean.time = calcMean(session).time;
-		sessionMean.string = calcMean(session).string;
+		sessionMean.time = calcMean(session, session.length).time;
+		sessionMean.string = calcMean(session, session.length).string;
 		///////////
 
 		// CALC MO10AO5
-		if (ao5s.length === avgCount) {
+		if (ao5s.length >= avgCount) {
 
-			mo10Ao5.time = calcMean(ao5s).time;
-			mo10Ao5.string = calcMean(ao5s).string;
+			mo10Ao5.time = calcMean(ao5s, avgCount).time;
+			mo10Ao5.string = calcMean(ao5s, avgCount).string;
 		}
 		//////////
 	}
@@ -122,7 +122,7 @@ function calcAo5(arr) {
 
 	if (dnfCount > 1) {
 		var avg = {
-			time: 0, // or Math.pow(2, 53) - 1
+			time: Math.pow(2, 53) - 1, // or 0
 			string: "DNF"
 		}
 		ao5s.push(avg);
@@ -182,6 +182,7 @@ function calcAo5(arr) {
 
 	} else {
 
+		var copy = [];
 		var maxI = 0;
 		var minI = 0;
 		var avg = {
@@ -190,22 +191,12 @@ function calcAo5(arr) {
 		}
 
 		for (let i = 0; i < 5; i++) {
-			if (arr[i].time < arr[minI].time) {
-				minI = i;
-			}
+			copy.push(arr[i].time);
 		}
 
-		for (let i = 0; i < 5; i++) {
-			if (arr[i].time > arr[maxI].time) {
-				maxI = i;
-			}
-		}
+		copy.sort(compare);
 
-		for (let i = 0; i < 5; i++) {
-			if (i !== minI && i !== maxI) {
-				avg.time += arr[i].time;
-			}
-		}
+		avg.time = copy[1] + copy[2] + copy[3];
 		avg.time /= 3;
 
 		var avgMnt = Math.floor(avg.time / 60);
@@ -227,14 +218,14 @@ function calcAo5(arr) {
 	}
 }
 
-function calcMean(arr) {
+function calcMean(arr, len) {
 	var dnfCount = 0;
 	var mean = {
 		time: 0,
 		string: ""
 	}
 
-	for (let i = 0; i < arr.length; i++) {
+	for (let i = arr.length - 1; i > arr.length - len - 1; i--) {
 		if (arr[i].string === "DNF" || arr[i].pen === "dnf") {
 			dnfCount++;
 
@@ -247,7 +238,7 @@ function calcMean(arr) {
 		mean.string = "DNF";
 
 	} else {
-		mean.time /= arr.length - dnfCount;
+		mean.time /= len - dnfCount;
 
 		var meanMnt = Math.floor(mean.time / 60);
 		var meanSec = Math.round((mean.time % 60) * 100) / 100;
@@ -266,4 +257,8 @@ function calcMean(arr) {
 	}
 
 	return mean;
+}
+
+function compare(truoc, sau) {
+	return truoc - sau;
 }
