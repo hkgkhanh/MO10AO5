@@ -13,6 +13,7 @@ document.onkeyup = function(e) {
 		if (!inspection) {
 			inspection = true;
 			inspectBegin = setInterval(outOfInspectTime, 1000);
+			document.getElementById("input").value = "";
 			document.getElementById("inspectionDiv").style.display = "flex";
 			document.getElementById("inputDiv").style.display = "none";
 		} else {
@@ -97,7 +98,13 @@ document.onkeydown = function(e) {
 		
 	} else if (e.keyCode === 13) {
 		if (document.getElementById("closeDiv").style.display !== "block") {
-			getTimeInput();
+
+			if (document.getElementById("input").value !== "") {
+				getTimeInput();
+
+			} else {
+				generateScramble(document.getElementById('scramSelect').value);
+			}
 			
 		}
 	} else if (e.altKey && e.keyCode === 90) {
