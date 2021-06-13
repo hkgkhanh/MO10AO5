@@ -101,7 +101,7 @@ function timeContain() {
 
 		text += "Session mean: " + sessionMean.string + "<br>";
 
-		if (ao5s.length === avgCount) {
+		if (ao5s.length >= avgCount) {
 
 			text += "MO" + avgCount + "AO5: " + mo10Ao5.string + "<br><br>";
 		} else {
@@ -195,10 +195,10 @@ function setDNF() {
 		var curIndex = session.length - 1;
 		
 		session[curIndex].pen = "dnf";
-		session[curIndex].time = session[curIndex].tOk;
+		session[curIndex].time = Math.pow(2, 53) - 1;
 
-		var solveMin = Math.floor(session[curIndex].time / 60);
-		var solveSec = Math.floor((session[curIndex].time % 60) * 100) / 100;
+		var solveMin = Math.floor(session[curIndex].tOk / 60);
+		var solveSec = Math.floor((session[curIndex].tOk % 60) * 100) / 100;
 
 		if (solveMin === 0) {
 			session[curIndex].string = "DNF(" + solveSec.toFixed(2) + ")";
