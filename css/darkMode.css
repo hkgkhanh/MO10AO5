@@ -51,3 +51,12 @@ body, #input {
 	border: 1px solid #ECF0F1;
 	background-color: #151515;
 }
+
+#notificationDiv {
+	background-color: #343434;
+	box-shadow: 0px 10px 10px rgba(200, 200, 200, 0.05);
+}
+
+#closeNotfDiv:hover {
+	background-color: #3b3b3b;
+}
