@@ -5,6 +5,8 @@ var bestAo5Index = 0;
 var mnt = 0;
 var sec = 0;
 
+var stopNotf;
+
 function contain(str, char) {
 	var have = false;
 
@@ -162,6 +164,9 @@ function setOK() {
 
 		calc();
 		timeContain();
+		notification("No penalty applied");
+
+		document.getElementById("input").focus();
 	}
 }
 
@@ -187,6 +192,9 @@ function setP2() {
 
 		calc();
 		timeContain();
+		notification("+2 penalty applied");
+
+		document.getElementById("input").focus();
 	}
 }
 
@@ -212,6 +220,9 @@ function setDNF() {
 
 		calc();
 		timeContain();
+		notification("DNF penalty applied");
+
+		document.getElementById("input").focus();
 	}
 }
 
@@ -223,5 +234,20 @@ function delSolve() {
 		
 		calc();
 		timeContain();
+		notification("Last solve deleted");
+
+		document.getElementById("input").focus();
 	}
+}
+
+function notification(str) {
+	document.getElementById("notificationDiv").style.display = "flex";
+	document.getElementById("notification").innerHTML = str;
+
+	stopNotf = setTimeout(closeNotf, 3000);
+}
+
+function closeNotf() {
+	document.getElementById("notificationDiv").style.display = "none";
+	clearTimeout(stopNotf);
 }
