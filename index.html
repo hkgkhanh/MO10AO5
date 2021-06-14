@@ -27,7 +27,7 @@
       <ul>
         <li onclick="showDiv('timesListDiv')"><a>Times list</a></li>
         <li onclick="showDiv('aboutDiv')"><a>About</a></li>
-        <li onclick="toggleTheme()"><a>Dark/Light</a></li>
+        <li onclick="toggleTheme(); document.getElementById('input').focus();"><a>Dark/Light</a></li>
       </ul>
     </div>
 
@@ -68,7 +68,7 @@
           <option value="333bld">3x3x3 bld</option>
         </select>
 
-        <span id="lastScram" onclick="getLastScramble()">last</span>/<span id="nextScram" onclick="generateScramble(document.getElementById('scramSelect').value)">next</span> scramble
+        <span id="lastScram" onclick="getLastScramble(); document.getElementById('input').focus();">last</span>/<span id="nextScram" onclick="generateScramble(document.getElementById('scramSelect').value); document.getElementById('input').focus();">next</span> scramble
       </div>
 
       <div id="scramContainer"></div>
@@ -117,10 +117,16 @@
       </div>
     </div>
 
-    <div id="closeDiv" onclick="closeDiv()">X</div>
+    <div id="closeDiv" onclick="closeDiv();">X</div>
 
     <div id="inspectionDiv">
       <span id="inspection">15</span>
+    </div>
+
+    <div id="notificationDiv">
+      <div id="notification"></div>
+
+      <div id="closeNotfDiv" onclick="closeNotf(); document.getElementById('input').focus();">X</div>
     </div>
 
     <script>
@@ -145,6 +151,8 @@
           document.styleSheets[2].disabled = false;
           document.styleSheets[3].disabled = true;
         }
+
+        document.getElementById("input").focus();
       }
 
 
@@ -195,6 +203,8 @@
         timesListDiv.style.display = "none";
         aboutDiv.style.display = "none";
         document.getElementById("closeDiv").style.display = "none";
+
+        document.getElementById("input").focus();
       }
     </script>
 	  
@@ -240,4 +250,5 @@
   </body>
 	
 </html>
+
 
