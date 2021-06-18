@@ -78,16 +78,26 @@ code {
 }
 
 #navbar ul li {
+	width: calc(100% / 3);
+	text-align: center;
 	list-style: none;
 	cursor: pointer;
 }
 
+#navbar ul li i {
+	font-size: 1.5rem;
+	/*height: 5rem;
+	line-height: 5rem;*/
+	display: inline-block;
+	padding: 1rem 0.5rem 1rem 1rem;
+}
+
 #navbar ul li a {
 	font-size: 1.5rem;
-	height: 3rem;
-	line-height: 3rem;
+	/*height: 3rem;
+	line-height: 3rem;*/
 	display: inline-block;
-	padding: 0 1rem;
+	padding: 1rem 0.5rem 1rem 0;
 }
 
 #inputDiv {
@@ -109,13 +119,14 @@ code {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.5rem;
-	width: 40rem;
+	width: 90rem;
 	max-width: 100vw;
 	text-align: center;
 }
 
 #inputDiv table tr td {
 	padding: 1rem;
+	width: calc(100% / 3);
 }
 
 #pen_OK, #pen_p2, #pen_DNF, #del, #reset {
@@ -403,4 +414,3 @@ code {
 .cell {
 	cursor: pointer;
 }
-
