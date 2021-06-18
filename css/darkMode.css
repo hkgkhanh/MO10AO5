@@ -22,8 +22,12 @@ body, #input {
 	background-color: #212121;
 }
 
-#timesList, #about {
+#timesList, #bestResultList, #sessionList, #about {
 	background-color: #151515;
+}
+
+#sessionTable tr td {
+	border: 1px solid #212121;
 }
 
 #input, #scramSelect {
@@ -39,7 +43,7 @@ body, #input {
 	background-color: #151515;
 }
 
-#pen_OK:hover, #pen_p2:hover, #pen_DNF:hover, #del:hover, #lastScram:hover, #nextScram:hover {
+#pen_OK:hover, #pen_p2:hover, #pen_DNF:hover, #del:hover, #reset:hover, #lastScram:hover, #nextScram:hover {
 	background-color: #252525;
 }
 
@@ -59,4 +63,8 @@ body, #input {
 
 #closeNotfDiv:hover {
 	background-color: #3b3b3b;
+}
+
+.cell:hover {
+	background-color: #212121;
 }
