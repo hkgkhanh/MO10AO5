@@ -24,6 +24,14 @@ function getDataStorage() {
 		} else {
 			document.getElementById("scramSelect").selectedIndex = "0";
 		}
+
+		if (localStorage.session) {
+			var jsonSessionText = localStorage.getItem("session");
+			session = JSON.parse(jsonSessionText);
+
+		} else {
+			session = [];
+		}
 		
 	}
 }
@@ -32,16 +40,19 @@ function saveSettings() {
 	var jsonTheme;
 	var jsonAvgCount;
 	var jsonScrambleType;
+	var jsonSession;
 
 	if (window.localStorage !== undefined) {
 
    		jsonTheme = JSON.stringify(darkMode);
    		jsonAvgCount = JSON.stringify(avgCount);
    		jsonScrambleType = JSON.stringify(document.getElementById('scramSelect').selectedIndex);
+   		jsonSession = JSON.stringify(session);
 
 	  	localStorage.setItem("theme", jsonTheme);
    		localStorage.setItem("avgCount", jsonAvgCount);
    		localStorage.setItem("scrambleType", jsonScrambleType);
+   		localStorage.setItem("session", jsonSession);
   		return;
  	};
 }
