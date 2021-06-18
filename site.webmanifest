@@ -1,6 +1,6 @@
 {
-	"name": "MO10AO5 Cube CALC",
-	"short_name": "MO10AO5",
+	"name": "prCubeCALC",
+	"short_name": "prCubeCALC",
 	"icons":[
 		{
 			"src": "images/android-chrome-192x192.png",
