@@ -97,7 +97,7 @@ document.onkeydown = function(e) {
 		toggleTheme();
 		
 	} else if (e.keyCode === 13) {
-		if (document.getElementById("closeDiv").style.display !== "block") {
+		if (document.getElementById("timesListDiv").style.display !== "block" && document.getElementById("aboutDiv").style.display !== "block" ) {
 
 			if (document.getElementById("input").value !== "") {
 				getTimeInput();
@@ -109,6 +109,9 @@ document.onkeydown = function(e) {
 		}
 	} else if (e.altKey && e.keyCode === 90) {
 		delSolve();
+		
+	} else if (e.altKey && e.keyCode === 68) {
+		resetSession();
 		
 	} else if (e.altKey && e.keyCode === 37) {
 		getLastScramble();
@@ -137,3 +140,4 @@ document.onkeydown = function(e) {
 		
 	}
 }
+
