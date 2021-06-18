@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="css/darkMode.css"></link>
     <link rel="stylesheet" type="text/css" href="css/lightMode.css"></link>
 
+    <script src="https://kit.fontawesome.com/430714068b.js" crossorigin="anonymous"></script>
+
     
   </head>
 	
@@ -25,27 +27,37 @@
 
     <div id="navbar">
       <ul>
-        <li onclick="showDiv('timesListDiv')"><a>Times list</a></li>
-        <li onclick="showDiv('aboutDiv')"><a>About</a></li>
-        <li onclick="toggleTheme(); document.getElementById('input').focus();"><a>Dark/Light</a></li>
+        <li onclick="showDiv('timesListDiv')">
+          <i class="fas fa-list"></i>
+          <a>Times list</a>
+        </li>
+
+        <li onclick="showDiv('aboutDiv')">
+          <i class="fas fa-info"></i>
+          <a>About</a>
+        </li>
+
+        <li onclick="toggleTheme(); document.getElementById('input').focus();">
+          <i class="fas fa-lightbulb"></i>
+          <a>Dark/light</a>
+        </li>
       </ul>
     </div>
 
     <div id="inputDiv">
       <table>
         <tr>
-          <!--<td colspan="4">solve: <span id="solveInAvg">1</span></td>
-          <td colspan="4">avg: <span id="avg">1</span></td>-->
-          <td colspan="3" id="del" onclick="delSolve()">del</td>
-          <td colspan="3" id="reset" onclick="resetSession()">reset</td>
+          <td colspan="1">total: <span id="total"></span></td>
+          <td colspan="1" id="del" onclick="delSolve()">del</td>
+          <td colspan="1" id="reset" onclick="resetSession()">reset</td>
         </tr>
         <tr>
-          <td colspan="6"><input type="text" id="input"></td>
+          <td colspan="3"><input type="text" id="input"></td>
         </tr>
         <tr>
-          <td colspan="2" id="pen_OK" onclick="setOK()">OK</td>
-          <td colspan="2" id="pen_p2" onclick="setP2()">+2</td>
-          <td colspan="2" id="pen_DNF" onclick="setDNF()">DNF</td>
+          <td colspan="1" id="pen_OK" onclick="setOK()">OK</td>
+          <td colspan="1" id="pen_p2" onclick="setP2()">+2</td>
+          <td colspan="1" id="pen_DNF" onclick="setDNF()">DNF</td>
         </tr>
       </table>
     </div>
@@ -223,7 +235,7 @@
         let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-        if (width/height < 7/5) {
+        if (width/height < 6/5) {
           document.styleSheets[1].disabled = true;
           document.styleSheets[0].disabled = false;
         } else {
@@ -313,6 +325,3 @@
   </body>
 	
 </html>
-
-
-
