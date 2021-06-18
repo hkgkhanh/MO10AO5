@@ -9,7 +9,7 @@
 	  
 	  <script type="text/javascript" src="service-worker.js"></script>
 
-    <title>MO10AO5 Cube CALC</title>
+    <title>prCubeCALC - Cubing Calculator for Comps practice</title>
     <link rel="shortcut icon" type="image/png" href="images\android-chrome-192x192.png"></link>
     <link rel="manifest" href="site.webmanifest">
 
@@ -34,17 +34,18 @@
     <div id="inputDiv">
       <table>
         <tr>
-          <td colspan="2">solve: <span id="solveInAvg">1</span></td>
-          <td colspan="2">avg: <span id="avg">1</span></td>
+          <!--<td colspan="4">solve: <span id="solveInAvg">1</span></td>
+          <td colspan="4">avg: <span id="avg">1</span></td>-->
+          <td colspan="3" id="del" onclick="delSolve()">del</td>
+          <td colspan="3" id="reset" onclick="resetSession()">reset</td>
         </tr>
         <tr>
-          <td colspan="4"><input type="text" id="input"></td>
+          <td colspan="6"><input type="text" id="input"></td>
         </tr>
         <tr>
-          <td colspan="1" id="pen_OK" onclick="setOK()">OK</td>
-          <td colspan="1" id="pen_p2" onclick="setP2()">+2</td>
-          <td colspan="1" id="pen_DNF" onclick="setDNF()">DNF</td>
-          <td colspan="1" id="del" onclick="delSolve()">Del</td>
+          <td colspan="2" id="pen_OK" onclick="setOK()">OK</td>
+          <td colspan="2" id="pen_p2" onclick="setP2()">+2</td>
+          <td colspan="2" id="pen_DNF" onclick="setDNF()">DNF</td>
         </tr>
       </table>
     </div>
@@ -76,8 +77,65 @@
     </div>
 
     <div id="timesListDiv">
-      <div id="timesList">
-        You haven't done any solve.
+      <div id="timesListDiv2">
+        <div id="bestResultList">
+          <table id="bestResultTable">
+            <tr>
+              <td></td>
+              <td><b>current</b></td>
+              <td><b>best</b></td>
+            </tr>
+            <tr>
+              <td><b>single</b></td>
+              <td id="cSingle" onclick="if (session.length > 0) {timeContain('cSingle')}">-</td>
+              <td id="bSingle" onclick="if (session.length > 0) {timeContain('bSingle')}">-</td>
+            </tr>
+            <tr>
+              <td><b>mo3</b></td>
+              <td id="cMo3" onclick="if (session.length > 2) {timeContain('cMo3')}">-</td>
+              <td id="bMo3" onclick="if (session.length > 2) {timeContain('bMo3')}">-</td>
+            </tr>
+            <tr>
+              <td><b>ao5</b></td>
+              <td id="cAo5" onclick="if (session.length > 4) {timeContain('cAo5')}">-</td>
+              <td id="bAo5" onclick="if (session.length > 4) {timeContain('bAo5')}">-</td>
+            </tr>
+            <tr>
+              <td><b>ao12</b></td>
+              <td id="cAo12" onclick="if (session.length > 11) {timeContain('cAo12')}">-</td>
+              <td id="bAo12" onclick="if (session.length > 11) {timeContain('bAo12')}">-</td>
+            </tr>
+            <tr>
+              <td><b>ao25</b></td>
+              <td id="cAo25" onclick="if (session.length > 24) {timeContain('cAo25')}">-</td>
+              <td id="bAo25" onclick="if (session.length > 24) {timeContain('bAo25')}">-</td>
+            </tr>
+            <tr>
+              <td><b>ao50</b></td>
+              <td id="cAo50" onclick="if (session.length > 49) {timeContain('cAo50')}">-</td>
+              <td id="bAo50" onclick="if (session.length > 49) {timeContain('bAo50')}">-</td>
+            </tr>
+            <tr>
+              <td><b>ao100</b></td>
+              <td id="cAo100" onclick="if (session.length > 99) {timeContain('cAo100')}">-</td>
+              <td id="bAo100" onclick="if (session.length > 99) {timeContain('bAo100')}">-</td>
+            </tr>
+            <tr>
+              <td><b>ao200</b></td>
+              <td id="cAo200" onclick="if (session.length > 199) {timeContain('cAo200')}">-</td>
+              <td id="bAo200" onclick="if (session.length > 199) {timeContain('bAo200')}">-</td>
+            </tr>
+            <tr>
+              <td><b>mo<span id="table_avgCount">10</span>ao5</b></td>
+              <td id="cMo10Ao5" onclick="if (session.length > avgCount * 5 - 1) {timeContain('cMo10Ao5')}">-</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+
+        <div id="sessionList"></div>
+
+        <div id="timesList"></div>
       </div>
     </div>
 
@@ -100,6 +158,7 @@
               <li><code>Alt + O</code>: Scramble for 3x3x3 oh</li>
               <li><code>Alt + B</code>: Scramble for 3x3x3 bld</li>
               <li><code>Alt + Z</code>: Delete last solve</li>
+              <li><code>Alt + D</code>: Reset session</li>
               <li><code>Ctrl + 1/2/3</code>: Set penalty of last solve to OK/+2/DNF</li>
               <li><code>Alt + Left/Right arrow</code>: Last/next scramble</li>
               <li><code>Alt + I</code>: set number of averages of 5</li>
@@ -117,7 +176,7 @@
       </div>
     </div>
 
-    <div id="closeDiv" onclick="closeDiv();">X</div>
+    <!--<div id="closeDiv" onclick="closeDiv();">X</div>-->
 
     <div id="inspectionDiv">
       <span id="inspection">15</span>
@@ -142,6 +201,8 @@
         getDataStorage();
         updateAvgCount();
         generateScramble(document.getElementById("scramSelect").value);
+        calc();
+        displayTimes();
         resizeWindow();
 
         if (!darkMode) {
@@ -196,13 +257,13 @@
 
       function showDiv(id) {
         document.getElementById(id).style.display = "block";
-        document.getElementById("closeDiv").style.display = "block";
+        //document.getElementById("closeDiv").style.display = "block";
       }
 
       function closeDiv() {
         timesListDiv.style.display = "none";
         aboutDiv.style.display = "none";
-        document.getElementById("closeDiv").style.display = "none";
+        //document.getElementById("closeDiv").style.display = "none";
 
         document.getElementById("input").focus();
       }
@@ -233,6 +294,8 @@
     <script type="text/javascript" src="scripts/inspection.js"></script>
     <script type="text/javascript" src="scripts/calc.js"></script>
     <script type="text/javascript" src="scripts/solveRelated.js"></script>
+    <script type="text/javascript" src="scripts/timeList.js"></script>
+    <script type="text/javascript" src="scripts/timeContain.js"></script>
 	  
 
     <script type="text/javascript" src="scripts/scram/mathlib.js"></script>
@@ -250,5 +313,6 @@
   </body>
 	
 </html>
+
 
 
