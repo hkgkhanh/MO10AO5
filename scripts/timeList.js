@@ -1,4 +1,6 @@
 function displayTimes() {
+	document.getElementById("total").innerHTML = (session.length - sessionDNFcount) + "/" + session.length;
+
 	document.getElementById("sessionList").innerHTML = "";
 	var table = document.createElement("table");
 	table.id = "sessionTable";
