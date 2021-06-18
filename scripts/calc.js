@@ -77,6 +77,11 @@ function calc() {
 
 	sessionDNFcount = 0;
 
+	sessionMean = {
+		time: 0,
+		string: "DNF"
+	}
+
 	if (session.length > 0) {
 
 		// CALC BEST SINGLE INDEX
