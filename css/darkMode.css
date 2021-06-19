@@ -30,6 +30,10 @@ body, #input {
 	border: 1px solid #212121;
 }
 
+#keyShortcutTable tr td, #keyShortcutTable tr th {
+	border: 1px solid #212121;
+}
+
 #input, #scramSelect {
 	border: 1px solid #ECF0F1;
 	background-color: #424242;
