@@ -25,12 +25,12 @@ function generateScramble(value) {
 			break;
 
 		case "666":
-			curScramble = megaScrambler.get666WCAScramble(70);
+			curScramble = megaScrambler.get666WCAScramble(80);
 			document.getElementById("scramContainer").style.fontSize = "1.5rem";
 			break;
 
 		case "777":
-			curScramble = megaScrambler.get777WCAScramble(90);
+			curScramble = megaScrambler.get777WCAScramble(100);
 			document.getElementById("scramContainer").style.fontSize = "1.5rem";
 			break;
 
