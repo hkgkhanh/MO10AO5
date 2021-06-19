@@ -160,7 +160,7 @@
           <li>Press spacebar for WCA inspection (optional).</li>
           <li>mean of <input id="avgCountInput" type="number" min="1" value="10" oninput="updateAvgCount(); saveSettings();"> average(s) of 5 (greater than 0).</li>
           <li>Keyboard shortcuts: <br>
-            <ul class="circleStyleList">
+            <!--<ul class="circleStyleList">
               <li><code>Alt + 2~7</code>: Scramble for 2x2x2<code>~</code>7x7x7</li>
               <li><code>Alt + M</code>: Scramble for megaminx</li>
               <li><code>Alt + P</code>: Scramble for pyraminx</li>
@@ -175,7 +175,52 @@
               <li><code>Alt + Left/Right arrow</code>: Last/next scramble</li>
               <li><code>Alt + I</code>: set number of averages of 5</li>
               <li><code>Alt + L</code>: toggle dark/light mode</li>
-            </ul>
+            </ul>-->
+            <table id="keyShortcutTable">
+              <tr>
+                <th>Key</th>
+                <th>Function</th>
+              </tr>
+              <tr>
+                <td>Alt + 2~7</td>
+                <td>Scramble for 2x2x2~7x7x7</td>
+              </tr>
+              <tr>
+                <td>Alt + 1</td>
+                <td>Scramble for square-1</td>
+              </tr>
+              <tr>
+                <td>Alt + M/P/S/C</td>
+                <td>Scramble for megaminx/pyraminx/skewb/clock</td>
+              </tr>
+              <tr>
+                <td>Alt + O/B</td>
+                <td>Scramble for 3x3x3 oh/bld</td>
+              </tr>
+              <tr>
+                <td>Alt + Z</td>
+                <td>Delete last solve</td>
+              </tr>
+              <tr>
+                <td>Alt + D</td>
+                <td>Reset session</td>
+              </tr>
+              <tr>
+                <td>Ctrl + 1/2/3</td>
+                <td>Set penalty of last solve to OK/+2/DNF</td>
+              </tr>
+              <tr>
+                <td>Alt + Left/Right arrow</td>
+                <td>Scramble for last/next scramble</td>
+              </tr>
+              <tr>
+                <td>Alt + I</td>
+                <td>Set number of averages of 5 for moXao5</td>
+              </tr>
+                <td>Alt + L</td>
+                <td>Toggle dark/light mode</td>
+              </tr>
+            </table>
           </li>
         </ul>
 
@@ -311,6 +356,7 @@
 	  
 
     <script type="text/javascript" src="scripts/scram/mathlib.js"></script>
+    <script type="text/javascript" src="scripts/scram/min2phase.js"></script>
     <script type="text/javascript" src="scripts/scram/scramble.js"></script>
     <script type="text/javascript" src="scripts/scram/utilscramble.js"></script>
     <script type="text/javascript" src="scripts/scram/megascramble.js"></script>
