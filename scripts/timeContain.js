@@ -45,7 +45,7 @@ function timeContainAoX(X, trim, arr, index) {
 	let ia = [];
 
 	for (var i = 0; i < X; i++) {
-		a.push(session[session.length - X + i]);
+		a.push(session[index + i]);
 	}
 
 	for (let i = 0; i < trim; i++) {
