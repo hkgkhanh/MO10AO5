@@ -264,6 +264,18 @@ code {
 	padding: 0.3rem;
 }
 
+#keyShortcutTable {
+	border-collapse: collapse;
+}
+
+#keyShortcutTable tr th {
+	text-align: center;
+}
+
+#keyShortcutTable tr td {
+	padding: 0 1rem;
+}
+
 #scramDiv {
 	position: fixed;
 	bottom: 0;
