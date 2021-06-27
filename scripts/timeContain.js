@@ -67,8 +67,8 @@ function timeContainAoX(X, trim, arr, index) {
 	return text;
 }
 
-function timeContainMo10Ao5(count) {
-	let text = "mean of " + count + " average" + ((count > 1) ? "s" : "") +  " of 5: " + mo10Ao5.string + " <br><br>";
+function timeContainMo10Ao5(count, index) {
+	let text = "mean of " + count + " average" + ((count > 1) ? "s" : "") +  " of 5: " + mo10ao5s[index].string + " <br><br>";
 
 	text += "Time list: <br>";
 
@@ -78,14 +78,16 @@ function timeContainMo10Ao5(count) {
 		let ia = [];
 
 		for (var k = 0; k < 5; k++) {
-			a.push(session[session.length - avgCount * 5 + i * 5 + k]);
+			//a.push(session[session.length - avgCount * 5 + i * 5 + k]);
+			a.push(session[index * 5 + i * 5 + k]);
 		}
 
 		ia.push(getIndexInOrder(a, 0), getIndexInOrder(a, 4));
 
 		for (let j = 0; j < 5; j++) {
 
-			let ind = session.length - (session.length % 5) - avgCount * 5 + i * 5 + j;
+			//let ind = session.length - (session.length % 5) - avgCount * 5 + i * 5 + j;
+			let ind = index * 5 + i * 5 + j;
 
 			if (!contain(ia, j)) {
 				text += " <br>" + (i + 1) + "-" + (j + 1) + ") " + session[ind].string + " &emsp; " + session[ind].scramble;
@@ -95,7 +97,8 @@ function timeContainMo10Ao5(count) {
 			} 
 		}
 
-		text += "<br> &emsp; &emsp; => " + nonRollingAo5s[nonRollingAo5s.length - count + i].string + " avg of 5 <br><br>";
+		//text += "<br> &emsp; &emsp; => " + nonRollingAo5s[nonRollingAo5s.length - count + i].string + " avg of 5 <br><br>";
+		text += "<br> &emsp; &emsp; => " + nonRollingAo5s[index + i].string + " avg of 5 <br><br>";
 	}
 
 	return text;
