@@ -142,7 +142,7 @@
             <tr>
               <td><b>mo<span id="table_avgCount">10</span>ao5</b></td>
               <td id="cMo10Ao5" onclick="if (session.length > avgCount * 5 - 1) {timeContain('cMo10Ao5')}">-</td>
-              <td></td>
+              <td id="bMo10Ao5" onclick="if (session.length > avgCount * 5 - 1) {timeContain('bMo10Ao5')}">-</td>
             </tr>
           </table>
         </div>
@@ -150,7 +150,9 @@
         <div id="sessionList"></div>
 
         <div id="timesList"></div>
+
       </div>
+
     </div>
 
     <div id="aboutDiv">
@@ -162,21 +164,6 @@
           <li>Press spacebar for WCA inspection (optional).</li>
           <li>mean of <input id="avgCountInput" type="number" min="1" value="10" oninput="updateAvgCount(); saveSettings();"> average(s) of 5 (greater than 0).</li>
           <li>Keyboard shortcuts: <br>
-            <!--<ul class="circleStyleList">
-              <li><code>Alt + 2~7</code>: Scramble for 2x2x2<code>~</code>7x7x7</li>
-              <li><code>Alt + M</code>: Scramble for megaminx</li>
-              <li><code>Alt + P</code>: Scramble for pyraminx</li>
-              <li><code>Alt + 1</code>: Scramble for square-1</li>
-              <li><code>Alt + S</code>: Scramble for skewb</li>
-              <li><code>Alt + C</code>: Scramble for clock</li>
-              <li><code>Alt + O</code>: Scramble for 3x3x3 oh</li>
-              <li><code>Alt + B</code>: Scramble for 3x3x3 bld</li>
-              <li><code>Alt + Z</code>: Delete last solve</li>
-              <li><code>Alt + D</code>: Reset session</li>
-              <li><code>Ctrl + 1/2/3</code>: Set penalty of last solve to OK/+2/DNF</li>
-              <li><code>Alt + Left/Right arrow</code>: Last/next scramble</li>
-              <li><code>Alt + I</code>: set number of averages of 5</li>
-              <li><code>Alt + L</code>: toggle dark/light mode</li>
             </ul>-->
             <table id="keyShortcutTable">
               <tr>
