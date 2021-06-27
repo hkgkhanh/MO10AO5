@@ -310,8 +310,31 @@ function calc() {
 				}
 			}
 
-			mo10Ao5.time = calcMo10Ao5(nonRollingAo5s, avgCount).time;
-			mo10Ao5.string = calcMo10Ao5(nonRollingAo5s, avgCount).string;
+			//mo10Ao5.time = calcMo10Ao5(nonRollingAo5s, avgCount).time;
+			//mo10Ao5.string = calcMo10Ao5(nonRollingAo5s, avgCount).string;
+			//mo10ao5s.push(calcMo10Ao5(nonRollingAo5s, avgCount));
+			for (let i = 0; i < nonRollingAo5s.length - avgCount + 1; i++) {
+
+				let arrCalc = [];
+				for (let j = 0; j < avgCount; j++) {
+					arrCalc.push(nonRollingAo5s[i + j]);
+				}
+
+				mo10ao5s.push(calcMo10Ao5(arrCalc, avgCount));
+			}
+
+			for (let i = 0; i < mo10ao5s.length; i++) {
+				if (mo10ao5s[i].string !== "DNF") {
+					bestMo10Ao5Index = i;
+					break;
+				}
+			}
+
+			for (let i = 0; i < mo10ao5s.length; i++) {
+				if (mo10ao5s[i].string !== "DNF" && mo10ao5s[i].time < mo10ao5s[bestMo10Ao5Index].time) {
+					bestMo10Ao5Index = i;
+				}
+			}
 		}
 		//////////
 	}
@@ -582,8 +605,8 @@ function displayBestResultTable() {
 	document.getElementById("cAo200").className = (session.length > 199) ?  "cell" : "";
 	document.getElementById("bAo200").className = (session.length > 199) ?  "cell" : "";
 
-	document.getElementById("cMo10Ao5").innerHTML = (session.length > (avgCount * 5 - 1)) ? mo10Ao5.string : "-";
-	//document.getElementById("bMo10Ao5").innerHTML = (session.length > (avgCount * 5 - 1)) ? mo10ao5s[bestMo10Ao5Index].string : "-";
+	document.getElementById("cMo10Ao5").innerHTML = (session.length > (avgCount * 5 - 1)) ? mo10ao5s[mo10ao5s.length - 1].string : "-";
+	document.getElementById("bMo10Ao5").innerHTML = (session.length > (avgCount * 5 - 1)) ? mo10ao5s[bestMo10Ao5Index].string : "-";
 	document.getElementById("cMo10Ao5").className = (session.length > (avgCount * 5 - 1)) ?  "cell" : "";
-	//document.getElementById("bMo10Ao5").className = (session.length > (avgCount * 5 - 1)) ?  "cell" : "";
+	document.getElementById("bMo10Ao5").className = (session.length > (avgCount * 5 - 1)) ?  "cell" : "";
 }
