@@ -124,7 +124,7 @@ document.onkeydown = function(e) {
 		}
 	} else if (e.altKey && e.keyCode === 90) {
 		e.preventDefault();
-		delSolve();
+		delSolve(session.length - 1);
 		
 	} else if (e.altKey && e.keyCode === 68) {
 		e.preventDefault();
@@ -140,15 +140,15 @@ document.onkeydown = function(e) {
 		
 	} else if (e.ctrlKey && e.keyCode === 49) {
 		e.preventDefault();
-		setOK();
+		setOK(session.length - 1);
 		
 	} else if (e.ctrlKey && e.keyCode === 50) {
 		e.preventDefault();
-		setP2();
+		setP2(session.length - 1);
 		
 	} else if (e.ctrlKey && e.keyCode === 51) {
 		e.preventDefault();
-		setDNF();
+		setDNF(session.length - 1);
 		
 	} else if (e.altKey && e.keyCode === 73) {
 		e.preventDefault();
