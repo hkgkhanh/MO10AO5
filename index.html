@@ -50,16 +50,16 @@
       <table>
         <tr>
           <td colspan="1">total: <span id="total"></span></td>
-          <td colspan="1" id="del" onclick="delSolve()">del</td>
+          <td colspan="1" id="del" onclick="delSolve(session.length - 1)">del</td>
           <td colspan="1" id="reset" onclick="resetSession()">reset</td>
         </tr>
         <tr>
           <td colspan="3"><input type="text" id="input"></td>
         </tr>
         <tr>
-          <td colspan="1" id="pen_OK" onclick="setOK()">OK</td>
-          <td colspan="1" id="pen_p2" onclick="setP2()">+2</td>
-          <td colspan="1" id="pen_DNF" onclick="setDNF()">DNF</td>
+          <td colspan="1" id="pen_OK" onclick="setOK(session.length - 1)">OK</td>
+          <td colspan="1" id="pen_p2" onclick="setP2(session.length - 1)">+2</td>
+          <td colspan="1" id="pen_DNF" onclick="setDNF(session.length - 1)">DNF</td>
         </tr>
       </table>
     </div>
@@ -234,10 +234,18 @@
       <div id="closeNotfDiv" onclick="closeNotf(); document.getElementById('input').focus();">X</div>
     </div>
 
+    <div id="editSolveDiv">
+      <div id="editSolveDiv_ok" onclick="setOK(solveIndex); closeEditSolve();">OK</div>
+      <div id="editSolveDiv_p2" onclick="setP2(solveIndex); closeEditSolve();">+2</div>
+      <div id="editSolveDiv_dnf" onclick="setDNF(solveIndex); closeEditSolve();">DNF</div>
+      <div id="editSolveDiv_del" onclick="delSolve(solveIndex); closeEditSolve();"><i class="fas fa-trash-alt"></i></div>
+    </div>
+
     <script>
       var darkMode = false;
       var timesListDiv = document.getElementById("timesListDiv");
       var aboutDiv = document.getElementById("aboutDiv");
+      var solveIndex = 0;
 
 
 
@@ -295,7 +303,6 @@
 
         saveSettings();
       }
-
 
 
 
