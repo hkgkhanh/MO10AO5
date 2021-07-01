@@ -72,3 +72,15 @@ body, #input {
 .cell:hover {
 	background-color: #212121;
 }
+
+#editSolveDiv {
+	background-color: #bfd9ff;
+}
+
+#editSolveDiv_ok, #editSolveDiv_p2, #editSolveDiv_dnf {
+	background-color: #599cff;
+}
+
+#editSolveDiv_del {
+	background-color: #b21f4c;
+}
