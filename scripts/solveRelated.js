@@ -211,9 +211,9 @@ function timeContainRandomAo12(index) {
 
 
 
-function setOK() {
+function setOK(i) {
 	if (session.length > 0) {
-		var curIndex = session.length - 1;
+		var curIndex = i;
 
 		session[curIndex].pen = "ok";
 		session[curIndex].time = session[curIndex].tOk;
@@ -233,7 +233,8 @@ function setOK() {
 
 		calc();
 		displayTimes();
-		timeContain("session");
+		//timeContain("session");
+		document.getElementById("timesList").innerHTML = "";
 		saveSettings();
 		notification("No penalty applied");
 
@@ -241,9 +242,9 @@ function setOK() {
 	}
 }
 
-function setP2() {
+function setP2(i) {
 	if (session.length > 0) {
-		var curIndex = session.length - 1;
+		var curIndex = i;
 		
 		session[curIndex].pen = "+2";
 		session[curIndex].time = session[curIndex].tPlus2;
@@ -263,7 +264,8 @@ function setP2() {
 
 		calc();
 		displayTimes();
-		timeContain("session");
+		//timeContain("session");
+		document.getElementById("timesList").innerHTML = "";
 		saveSettings();
 		notification("+2 penalty applied");
 
@@ -271,9 +273,9 @@ function setP2() {
 	}
 }
 
-function setDNF() {
+function setDNF(i) {
 	if (session.length > 0) {
-		var curIndex = session.length - 1;
+		var curIndex = i;
 		
 		session[curIndex].pen = "dnf";
 		session[curIndex].time = Math.pow(2, 53) - 1;
@@ -293,7 +295,8 @@ function setDNF() {
 
 		calc();
 		displayTimes();
-		timeContain("session");
+		//timeContain("session");
+		document.getElementById("timesList").innerHTML = "";
 		saveSettings();
 		notification("DNF penalty applied");
 
@@ -301,34 +304,42 @@ function setDNF() {
 	}
 }
 
-function delSolve() {
-	if (session.length > 0 && confirm("Delete last solve?")) {
-		var curIndex = session.length - 1;
+function delSolve(i) {
+	if (session.length > 0) { // do NOT write as (session.length > 0 && confirm(...)), must split into 2 if lines, dont know why
 
-		session.splice(curIndex, 1);
+		if (confirm("Delete solve " + (i + 1) + ") " + session[i].string + "?")) {
+			var curIndex = i;
+
+			session.splice(curIndex, 1);
 		
-		calc();
-		displayTimes();	
-		timeContain("session");
-		saveSettings();
-		notification("Last solve deleted");
+			calc();
+			displayTimes();	
+			//timeContain("session");
+			document.getElementById("timesList").innerHTML = "";
+			saveSettings();
+			notification("Solve deleted");
 
-		document.getElementById("input").focus();
+			document.getElementById("input").focus();
+		}
 	}
 }
 
 function resetSession() {
-	if (session.length > 0 && confirm("Reset session?")) {
+	if (session.length > 0) {
 
-		session = [];
+		if (confirm("Reset session?")) {
+
+			session = [];
 		
-		calc();
-		displayTimes();
-		timeContain("session");
-		saveSettings();
-		notification("Session reset");
+			calc();
+			displayTimes();
+			//timeContain("session");
+			document.getElementById("timesList").innerHTML = "";
+			saveSettings();
+			notification("Session reset");
 
-		document.getElementById("input").focus();
+			document.getElementById("input").focus();
+		}
 	}
 }
 
@@ -342,4 +353,6 @@ function notification(str) {
 function closeNotf() {
 	document.getElementById("notificationDiv").style.display = "none";
 	clearTimeout(stopNotf);
+
+	document.getElementById("input").focus();
 }
