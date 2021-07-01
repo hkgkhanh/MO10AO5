@@ -193,6 +193,7 @@ code {
 	display: grid;
 	grid-gap: 0.5rem;
 	grid-template-columns: 30% 70%;
+	grid-template-rows: 70% 30%;
 }
 
 #timesList {
@@ -206,6 +207,7 @@ code {
 #bestResultList {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
+  overflow-y: auto;
 
   -webkit-user-select: none;
 	-khtml-user-select: none;
@@ -419,4 +421,46 @@ code {
 
 .cell {
 	cursor: pointer;
+}
+
+#editSolveDiv {
+	display: none;
+	grid-gap: 0.5rem;
+	padding: 0.5rem;
+
+	border-radius: 5px;
+
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#editSolveDiv_ok, #editSolveDiv_p2, #editSolveDiv_dnf, #editSolveDiv_del {
+	width: 3rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	cursor: pointer;
+
+	border-radius: 5px;
+
+	grid-row: 1 / span 1;
+}
+
+#editSolveDiv_ok {
+	grid-column: 1 / span 1;
+}
+
+#editSolveDiv_p2 {
+	grid-column: 2 / span 1;
+}
+
+#editSolveDiv_dnf {
+	grid-column: 3 / span 1;
+}
+
+#editSolveDiv_del {
+	grid-column: 4 / span 1;
 }
