@@ -49,6 +49,7 @@ function displayTimes() {
 			
 			newTimeCell.addEventListener("click", function() {
 				timeContainRandomSingle(i);
+				showEditSolve(i, this.getBoundingClientRect().left, this.getBoundingClientRect().top);
 			});
 
 			newTimeCell.className = "cell";
@@ -87,4 +88,18 @@ function displayTimes() {
 
 	document.getElementById("sessionList").appendChild(table);
 	document.getElementById("sessionList").scrollTo(0, 0);
+}
+
+function showEditSolve(i, x, y) {
+	document.getElementById("editSolveDiv").style.display = "inline-grid";
+	//showDiv("editSolveDiv");
+
+	solveIndex = i;
+
+	let offY = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
+	$("#editSolveDiv").offset({left: x, top: y + offY * 2});
+}
+
+function closeEditSolve() {
+	document.getElementById("editSolveDiv").style.display = "none";
 }
