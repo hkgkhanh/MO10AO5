@@ -23,6 +23,7 @@ document.onkeyup = function(e) {
 			document.getElementById("inspection").innerHTML = "15";
 			document.getElementById("inspectionDiv").style.display = "none";
 			document.getElementById("inputDiv").style.display = "flex";
+			document.getElementById("input").focus();
 		}
 	}
 }
