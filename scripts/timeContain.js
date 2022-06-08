@@ -10,6 +10,7 @@ function timeContainSession() {
 	text += (session.length > 49) ? ("Current ao50: " + ao50s[ao50s.length - 1].string + " <br>" + "Best ao50: " + ao50s[bestAo50Index].string + " <br><br>") : "";
 	text += (session.length > 99) ? ("Current ao100: " + ao100s[ao100s.length - 1].string + " <br>" + "Best ao100: " + ao100s[bestAo100Index].string + " <br><br>") : "";
 	text += (session.length > 199) ? ("Current ao200: " + ao200s[ao200s.length - 1].string + " <br>" + "Best ao200: " + ao200s[bestAo200Index].string + " <br><br>") : "";
+	text += (session.length > 4) ? ("Best non-rolling ao5: " + ao5s[bestNrAo5Index * 5].string + " <br><br>") : "";
 
 	text += "Time list: <br>";
 
