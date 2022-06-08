@@ -144,6 +144,11 @@
               <td id="cMo10Ao5" onclick="if (session.length > avgCount * 5 - 1) {timeContain('cMo10Ao5')}">-</td>
               <td id="bMo10Ao5" onclick="if (session.length > avgCount * 5 - 1) {timeContain('bMo10Ao5')}">-</td>
             </tr>
+            <tr>
+              <td><b>non-rolling ao5</b></td>
+              <td></td>
+              <td id="bNrAo5" onclick="if (session.length > 4) {timeContain('bNrAo5')}">-</td>
+            </tr>
           </table>
         </div>
 
@@ -164,7 +169,7 @@
           <li>Press spacebar for WCA inspection (optional).</li>
           <li>mean of <input id="avgCountInput" type="number" min="1" value="10" oninput="updateAvgCount(); saveSettings();"> average(s) of 5 (greater than 0).</li>
           <li>Keyboard shortcuts: <br>
-            </ul>-->
+            </ul>
             <table id="keyShortcutTable">
               <tr>
                 <th>Key</th>
