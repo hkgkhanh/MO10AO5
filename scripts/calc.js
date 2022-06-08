@@ -25,6 +25,7 @@ var bestAo50Index = 0;
 var bestAo100Index = 0;
 var bestAo200Index = 0;
 var bestMo10Ao5Index = 0;
+var bestNrAo5Index = 0;
 
 var mo10Ao5 = {
 	time: 0,
@@ -335,8 +336,33 @@ function calc() {
 					bestMo10Ao5Index = i;
 				}
 			}
+
 		}
 		//////////
+
+		// CALC BEST NON-ROLLING AO5
+		if (session.length > 4) {
+			for (let i = 0; i < ao5s.length; i++) {
+
+				if (i % 5 === 0) {
+					nonRollingAo5s.push(ao5s[i]);
+				}
+			}
+
+			for (let i = 0; i < nonRollingAo5s.length; i++) {
+				if (nonRollingAo5s[i].string !== "DNF") {
+					bestNrAo5Index = i;
+					break;
+				}
+			}
+
+			for (let i = 0; i < nonRollingAo5s.length; i++) {
+				if (nonRollingAo5s[i].string !== "DNF" && nonRollingAo5s[i].time < nonRollingAo5s[bestNrAo5Index].time) {
+					bestNrAo5Index = i;
+				}
+			}
+	}
+		///////
 	}
 
 	// DISPLAY INTO THE BEST RESULT TABLE
@@ -609,4 +635,7 @@ function displayBestResultTable() {
 	document.getElementById("bMo10Ao5").innerHTML = (session.length > (avgCount * 5 - 1)) ? mo10ao5s[bestMo10Ao5Index].string : "-";
 	document.getElementById("cMo10Ao5").className = (session.length > (avgCount * 5 - 1)) ?  "cell" : "";
 	document.getElementById("bMo10Ao5").className = (session.length > (avgCount * 5 - 1)) ?  "cell" : "";
+
+	document.getElementById("bNrAo5").innerHTML = (session.length > 4) ? ao5s[(bestNrAo5Index) * 5].string : "";
+	document.getElementById("bNrAo5").className = (session.length > 4) ?  "cell" : "";
 }
